@@ -1,4 +1,2 @@
-debugtoolbar
-============
-
-Debug toolbar for Cubex
+Debug Toolbar
+=========

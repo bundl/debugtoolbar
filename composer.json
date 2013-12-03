@@ -1,0 +1,26 @@
+{
+  "name":              "bundl/debugtoolbar",
+  "description":       "Cubex Bundle : DebugToolbar",
+  "version":           "0.0.1",
+  "keywords":          ["debugtoolbar", "cubex"],
+  "homepage":          "http://cubex.io/bundl/debugtoolbar",
+  "minimum-stability": "dev",
+  "license":           "BSD-3-Clause",
+  "authors":           [
+    {
+      "name":     "Brooke Bryan",
+      "email":    "brooke@bajb.net",
+      "homepage": "http://www.bajb.net",
+      "role":     "Developer"
+    }
+  ],
+  "require":           {
+    "php":               ">=5.4.0",
+    "maximebf/debugbar": "1.*"
+  },
+  "autoload":          {
+    "psr-0": {
+      "Bundl\\DebugToolbar\\": "src/"
+    }
+  }
+}
