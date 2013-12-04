@@ -32,17 +32,16 @@ class QueryDataCollector extends TimeDataCollector
     }
 
     $memory = memory_get_peak_usage(true);
-
-    list($errNo, $errMsg) = $event->getArr("error", ["num" => 0, "msg" => '']);
+    $error  = $event->getArr("error", []);
 
     $this->_addStatement(
       $event->getStr("query"),
       $event->getFloat("execution_time", 0),
       $rows,
       $memory,
-      $errNo,
-      $errMsg,
-      ($errNo == 0)
+      idx($error, 'num', 0),
+      idx($error, 'msg', ''),
+      (idx($error, 'num', 0) == 0)
     );
   }
 
