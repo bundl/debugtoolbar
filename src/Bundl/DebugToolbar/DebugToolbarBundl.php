@@ -50,7 +50,7 @@ class DebugToolbarBundl extends Bundle
         throw new \Exception(
           "Please add the following to your defaults.ini within [dispatch]\n" .
           "passthrough[" . substr($baseUrl, 1) . "] = " .
-          "vendor/maximebf/debugbar/src/DebugBar/Resources"
+          "../vendor/maximebf/debugbar/src/DebugBar/Resources"
         );
       }
     }
