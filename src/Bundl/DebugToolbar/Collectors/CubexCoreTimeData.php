@@ -46,21 +46,21 @@ class CubexCoreTimeData extends TimeDataCollector
 
   public function getName()
   {
-    return 'cubexcoretime';
+    return 'time';
   }
 
   public function getWidgets()
   {
     return array(
-      "time"           => array(
+      "time"     => array(
         "icon"    => "time",
         "tooltip" => "Request Duration",
         "map"     => "time.duration_str",
         "default" => "'0ms'"
       ),
-      "cubex_Timeline" => array(
+      "timeline" => array(
         "widget"  => "PhpDebugBar.Widgets.TimelineWidget",
-        "map"     => "cubexcoretime",
+        "map"     => "time",
         "default" => "{}"
       )
     );
