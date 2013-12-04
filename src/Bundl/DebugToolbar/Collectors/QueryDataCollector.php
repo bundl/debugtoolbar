@@ -72,15 +72,18 @@ class QueryDataCollector extends TimeDataCollector
       'statements'           => []
     );
 
-    foreach($this->_statements as $statement)
+    if($this->_statements)
     {
-      $data['statements'][] = $statement;
-      $data['nb_statements']++;
-      $data['accumulated_duration'] += $statement['duration'];
-      $data['peak_memory_usage'] = max(
-        $data['peak_memory_usage'],
-        $statement['memory']
-      );
+      foreach($this->_statements as $statement)
+      {
+        $data['statements'][] = $statement;
+        $data['nb_statements']++;
+        $data['accumulated_duration'] += $statement['duration'];
+        $data['peak_memory_usage'] = max(
+          $data['peak_memory_usage'],
+          $statement['memory']
+        );
+      }
     }
 
     $data['accumulated_duration_str'] = $this->formatDuration(
