@@ -20,6 +20,10 @@ class RequestDataCollector extends \DebugBar\DataCollector\RequestDataCollector
       }
     }
 
+    $data['Environment'] = CUBEX_ENV;
+    $data['Transaction'] = CUBEX_TRANSACTION;
+    $data['Locale']      = defined("LOCALE") ? LOCALE : 'Disabled';
+
     return $data;
   }
 }

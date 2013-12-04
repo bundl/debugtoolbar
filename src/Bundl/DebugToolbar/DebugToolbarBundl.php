@@ -5,6 +5,8 @@
 
 namespace Bundl\DebugToolbar;
 
+use Bundl\DebugToolbar\Collectors\CubexCoreTimeData;
+use Bundl\DebugToolbar\Collectors\QueryDataCollector;
 use Bundl\DebugToolbar\Collectors\RequestDataCollector;
 use Cubex\Bundle\Bundle;
 use Cubex\Events\EventManager;
@@ -14,7 +16,6 @@ use DebugBar\DataCollector\ExceptionsCollector;
 use DebugBar\DataCollector\MemoryCollector;
 use DebugBar\DataCollector\MessagesCollector;
 use DebugBar\DataCollector\PhpInfoCollector;
-use DebugBar\DataCollector\TimeDataCollector;
 use DebugBar\DebugBar;
 
 /**
@@ -70,16 +71,12 @@ class DebugToolbarBundl extends Bundle
       [$this, "catchLog"]
     );
 
-    EventManager::listen(
-      EventManager::CUBEX_QUERY,
-      [$this, "catchQuery"]
-    );
-
     $this->_debugBar = new DebugBar();
     $this->_debugBar->addCollector(new PhpInfoCollector());
     $this->_debugBar->addCollector(new MessagesCollector());
     $this->_debugBar->addCollector(new RequestDataCollector());
-    $this->_debugBar->addCollector(new TimeDataCollector());
+    $this->_debugBar->addCollector(new CubexCoreTimeData());
+    $this->_debugBar->addCollector(new QueryDataCollector());
     $this->_debugBar->addCollector(new MemoryCollector());
     $this->_debugBar->addCollector(new ExceptionsCollector());
 
@@ -106,15 +103,6 @@ class DebugToolbarBundl extends Bundle
     $this->_debugBar['messages']->addMessage(
       $event->getStr("message"),
       $event->getStr("level")
-    );
-  }
-
-  public function catchQuery(IEvent $event)
-  {
-    $this->_debugBar['time']->addMeasure(
-      $event->getStr("query"),
-      $event->getStr("start_time"),
-      $event->getStr("end_time")
     );
   }
 }
