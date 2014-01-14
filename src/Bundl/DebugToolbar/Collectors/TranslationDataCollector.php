@@ -22,11 +22,18 @@ class TranslationDataCollector extends DataCollector implements Renderable
     );
   }
 
+  public function addTranslation($source, $translated)
+  {
+    $key                       = md5($source) . '-' . strlen($source);
+    $this->_translations[$key] = "<strong>From:</strong> $source".
+      "\n<strong>To:</strong> $translated";
+  }
+
   public function listenT(IEvent $event, $response)
   {
     if($event->getStr("text") !== $response)
     {
-      $this->_translations[$event->getStr("text")] = $response;
+      $this->addTranslation($event->getStr("text"), $response);
     }
   }
 
@@ -35,8 +42,8 @@ class TranslationDataCollector extends DataCollector implements Renderable
     $expect = $event->getInt("number", 0) === 1 ? 'singular' : 'plural';
     if($event->getStr($expect) !== $response)
     {
-      $this->_translations[$event->getStr("singular")] = $response;
-      $this->_translations[$event->getStr("plural")] = $response;
+      $this->addTranslation($event->getStr("singular"), $response);
+      $this->addTranslation($event->getStr("plural"), $response);
     }
   }
 
@@ -68,7 +75,7 @@ class TranslationDataCollector extends DataCollector implements Renderable
     return array(
       "translations" => array(
         "icon"    => "tags",
-        "widget"  => "PhpDebugBar.Widgets.VariableListWidget",
+        "widget"  => "PhpDebugBar.Widgets.KVListWidget",
         "map"     => "translations",
         "default" => "{}"
       )

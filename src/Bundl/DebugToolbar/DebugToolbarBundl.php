@@ -90,6 +90,9 @@ class DebugToolbarBundl extends Bundle
   {
     $content = $event->getStr("content");
     $content .= $this->_debugRender->renderHead();
+    $content .= '<style>' .
+      'dl.phpdebugbar-widgets-kvlist dt { width:300px; }' .
+      '</style>';
     return $content;
   }
 
