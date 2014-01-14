@@ -8,6 +8,7 @@ namespace Bundl\DebugToolbar;
 use Bundl\DebugToolbar\Collectors\CubexCoreTimeData;
 use Bundl\DebugToolbar\Collectors\QueryDataCollector;
 use Bundl\DebugToolbar\Collectors\RequestDataCollector;
+use Bundl\DebugToolbar\Collectors\TranslationDataCollector;
 use Cubex\Bundle\Bundle;
 use Cubex\Events\EventManager;
 use Cubex\Events\IEvent;
@@ -74,6 +75,7 @@ class DebugToolbarBundl extends Bundle
     $this->_debugBar = new DebugBar();
     $this->_debugBar->addCollector(new PhpInfoCollector());
     $this->_debugBar->addCollector(new MessagesCollector());
+    $this->_debugBar->addCollector(new TranslationDataCollector());
     $this->_debugBar->addCollector(new RequestDataCollector());
     $this->_debugBar->addCollector(new CubexCoreTimeData());
     $this->_debugBar->addCollector(new QueryDataCollector());
