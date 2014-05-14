@@ -16,7 +16,7 @@
   ],
   "require":           {
     "php":               ">=5.4.0",
-    "maximebf/debugbar": "1.*",
+    "maximebf/debugbar": "1.9.6",
     "cubex/cubex":       "*"
   },
   "autoload":          {
